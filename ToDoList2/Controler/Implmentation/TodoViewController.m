@@ -1,15 +1,23 @@
+//
+//  DetailsViewController.m
+//  ToDoList2
+//
+//  Created by Engy on 7/17/2024.
 #import "TodoViewController.h"
 #import "TaskManager.h"
 #import "DetailsViewController.h"
 
-@interface TodoViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface TodoViewController () 
 @property (weak, nonatomic) IBOutlet UISearchBar *uiSearch;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray<Task *> *userArray;
+
 @end
 
 @implementation TodoViewController
-
+- (void)viewDidAppear:(BOOL)animated{
+    [_tableView reloadData];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
@@ -30,13 +38,18 @@
 
 - (IBAction)addBtnPressed:(id)sender {
     DetailsViewController *detailsVc = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailsViewController"];
-    [self.navigationController pushViewController:detailsVc animated:YES];
+//
+//
+//    //detailsVc.taskIndex = NSNotFound;
+      [self.navigationController pushViewController:detailsVc animated:YES];
+
 }
 
 - (void)reloadData {
     self.userArray = [[[TaskManager sharedManager] tasks] mutableCopy]; // Reload tasks from TaskManager
     [self.tableView reloadData];
 }
+
 
 #pragma mark - UITableViewDataSource
 
