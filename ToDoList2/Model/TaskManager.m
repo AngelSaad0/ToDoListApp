@@ -2,10 +2,11 @@
 //  TaskManager.m
 //  ToDoList2
 //
-//  Created by Engy on 7/17/2024.
+//  Created by Engy on 7/17/2567 BE.
 //
 
 #import "TaskManager.h"
+#import "Static.h"
 
 @interface TaskManager ()
 
@@ -37,7 +38,7 @@
 }
 
 - (void)loadTasks {
-    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"tasks"];
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:tasksKey];
     if (data) {
         NSArray *savedTasks = [NSKeyedUnarchiver unarchiveObjectWithData:data];
         self.mutableTasks = [NSMutableArray arrayWithArray:savedTasks];
@@ -48,7 +49,7 @@
 
 - (void)saveTasks {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.mutableTasks];
-    [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"tasks"];
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:tasksKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

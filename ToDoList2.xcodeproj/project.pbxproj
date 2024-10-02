@@ -13,13 +13,12 @@
 		A955A92F2C47B6A2009A1317 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A955A92E2C47B6A2009A1317 /* Assets.xcassets */; };
 		A955A9322C47B6A2009A1317 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A955A9302C47B6A2009A1317 /* LaunchScreen.storyboard */; };
 		A955A9352C47B6A2009A1317 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A955A9342C47B6A2009A1317 /* main.m */; };
-		A955A93D2C47B6DF009A1317 /* AddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A955A93C2C47B6DF009A1317 /* AddTaskViewController.m */; };
 		A955A9402C47B72E009A1317 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A955A93F2C47B72E009A1317 /* DetailsViewController.m */; };
 		A955A9432C47B742009A1317 /* InProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A955A9422C47B742009A1317 /* InProgressViewController.m */; };
 		A955A9462C47B760009A1317 /* DoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A955A9452C47B760009A1317 /* DoneViewController.m */; };
 		A955A9492C47B783009A1317 /* TodoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A955A9482C47B783009A1317 /* TodoViewController.m */; };
-		A955A94C2C47CAE8009A1317 /* TaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A955A94B2C47CAE8009A1317 /* TaskManager.m */; };
-		A98AA88F2C4817D0001E173B /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = A98AA88E2C4817D0001E173B /* Task.m */; };
+		C69FDC4A2C49231D00EAFEF5 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C69FDC492C49231D00EAFEF5 /* TabBarController.m */; };
+		C6CC1FFC2C486A5800D1DBD4 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CC1FFB2C486A5700D1DBD4 /* Task.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +32,6 @@
 		A955A9312C47B6A2009A1317 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A955A9332C47B6A2009A1317 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A955A9342C47B6A2009A1317 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A955A93B2C47B6DF009A1317 /* AddTaskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTaskViewController.h; sourceTree = "<group>"; };
-		A955A93C2C47B6DF009A1317 /* AddTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTaskViewController.m; sourceTree = "<group>"; };
 		A955A93E2C47B72E009A1317 /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		A955A93F2C47B72E009A1317 /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		A955A9412C47B742009A1317 /* InProgressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InProgressViewController.h; sourceTree = "<group>"; };
@@ -43,12 +40,11 @@
 		A955A9452C47B760009A1317 /* DoneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DoneViewController.m; sourceTree = "<group>"; };
 		A955A9472C47B783009A1317 /* TodoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoViewController.h; sourceTree = "<group>"; };
 		A955A9482C47B783009A1317 /* TodoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodoViewController.m; sourceTree = "<group>"; };
-		A955A94A2C47CAE8009A1317 /* TaskManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskManager.h; sourceTree = "<group>"; };
-		A955A94B2C47CAE8009A1317 /* TaskManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskManager.m; sourceTree = "<group>"; };
 		A955A94D2C47CB1C009A1317 /* Static.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Static.h; sourceTree = "<group>"; };
-		A98AA88D2C4817D0001E173B /* Task.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
-		A98AA88E2C4817D0001E173B /* Task.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
-		A98AA89F2C483F1F001E173B /* AddTaskProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTaskProtocol.h; sourceTree = "<group>"; };
+		C69FDC482C49231D00EAFEF5 /* TabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		C69FDC492C49231D00EAFEF5 /* TabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
+		C6CC1FFA2C486A5700D1DBD4 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		C6CC1FFB2C486A5700D1DBD4 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +77,6 @@
 		A955A9212C47B6A1009A1317 /* ToDoList2 */ = {
 			isa = PBXGroup;
 			children = (
-				A955A9342C47B6A2009A1317 /* main.m */,
 				A98AA8922C482522001E173B /* Controler */,
 				A98AA8912C48251B001E173B /* View */,
 				A98AA8902C48250F001E173B /* Model */,
@@ -94,10 +89,8 @@
 		A98AA8902C48250F001E173B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A955A94B2C47CAE8009A1317 /* TaskManager.m */,
-				A98AA88D2C4817D0001E173B /* Task.h */,
-				A98AA88E2C4817D0001E173B /* Task.m */,
-				A955A94A2C47CAE8009A1317 /* TaskManager.h */,
+				C6CC1FFA2C486A5700D1DBD4 /* Task.h */,
+				C6CC1FFB2C486A5700D1DBD4 /* Task.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -105,6 +98,11 @@
 		A98AA8912C48251B001E173B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A955A9222C47B6A1009A1317 /* AppDelegate.h */,
+				A955A9262C47B6A1009A1317 /* SceneDelegate.m */,
+				A955A9252C47B6A1009A1317 /* SceneDelegate.h */,
+				A955A9232C47B6A1009A1317 /* AppDelegate.m */,
+				A955A9342C47B6A2009A1317 /* main.m */,
 				A955A92B2C47B6A1009A1317 /* Main.storyboard */,
 				A955A9302C47B6A2009A1317 /* LaunchScreen.storyboard */,
 			);
@@ -123,15 +121,12 @@
 		A98AA8932C48252C001E173B /* headers */ = {
 			isa = PBXGroup;
 			children = (
-				A98AA89F2C483F1F001E173B /* AddTaskProtocol.h */,
 				A955A94D2C47CB1C009A1317 /* Static.h */,
 				A955A93E2C47B72E009A1317 /* DetailsViewController.h */,
 				A955A9412C47B742009A1317 /* InProgressViewController.h */,
 				A955A9442C47B760009A1317 /* DoneViewController.h */,
 				A955A9472C47B783009A1317 /* TodoViewController.h */,
-				A955A93B2C47B6DF009A1317 /* AddTaskViewController.h */,
-				A955A9222C47B6A1009A1317 /* AppDelegate.h */,
-				A955A9252C47B6A1009A1317 /* SceneDelegate.h */,
+				C69FDC482C49231D00EAFEF5 /* TabBarController.h */,
 			);
 			path = headers;
 			sourceTree = "<group>";
@@ -143,9 +138,7 @@
 				A955A93F2C47B72E009A1317 /* DetailsViewController.m */,
 				A955A9422C47B742009A1317 /* InProgressViewController.m */,
 				A955A9452C47B760009A1317 /* DoneViewController.m */,
-				A955A93C2C47B6DF009A1317 /* AddTaskViewController.m */,
-				A955A9232C47B6A1009A1317 /* AppDelegate.m */,
-				A955A9262C47B6A1009A1317 /* SceneDelegate.m */,
+				C69FDC492C49231D00EAFEF5 /* TabBarController.m */,
 			);
 			path = Implmentation;
 			sourceTree = "<group>";
@@ -220,11 +213,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A98AA88F2C4817D0001E173B /* Task.m in Sources */,
-				A955A94C2C47CAE8009A1317 /* TaskManager.m in Sources */,
 				A955A9432C47B742009A1317 /* InProgressViewController.m in Sources */,
-				A955A93D2C47B6DF009A1317 /* AddTaskViewController.m in Sources */,
+				C6CC1FFC2C486A5800D1DBD4 /* Task.m in Sources */,
 				A955A9242C47B6A1009A1317 /* AppDelegate.m in Sources */,
+				C69FDC4A2C49231D00EAFEF5 /* TabBarController.m in Sources */,
 				A955A9462C47B760009A1317 /* DoneViewController.m in Sources */,
 				A955A9402C47B72E009A1317 /* DetailsViewController.m in Sources */,
 				A955A9492C47B783009A1317 /* TodoViewController.m in Sources */,
@@ -378,6 +370,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ToDoList2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -404,6 +397,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ToDoList2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

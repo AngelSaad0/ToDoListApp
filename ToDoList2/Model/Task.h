@@ -1,37 +1,25 @@
-//
-//  Task.m
-//  ToDoList2
-//
-//  Created by Engy on 7/17/2024.
-//
-
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger, Priority) {
-    PriorityHigh,
-    PriorityMedium,
-    PriorityLow
-};
 
-typedef NS_ENUM(NSInteger, TaskStatus) {
-    TaskStatusTodo,
-    TaskStatusInProgress,
-    TaskStatusDone
-};
+@interface Task : NSObject <NSCoding, NSSecureCoding>
 
-@interface Task : NSObject <NSCoding>
+@property int priority;
+@property int status;
+@property NSString *descriptionT;
+@property NSString *title;
+@property NSDate *date;
+@property NSUUID *uuid;
 
-@property  NSUUID *taskID;
-@property NSString *name;
-@property NSString *taskDescription;
-@property  Priority priority;
-@property  NSDate *dateCreated;
-@property  TaskStatus status;
-@property  NSDate *reminder;
-@property  NSURL *attachedFile;
 
-- (instancetype)initWithName:(NSString *)name
-                description:(NSString *)description
-                   priority:(Priority)priority;
+-(void) encodeWithCoder: (NSCoder *)encoder;
 
+
++(void) saveDataWithKey: (NSString *)key withArray: (NSArray *)data;
+
++(NSArray<Task*> *) readDataWithKey: (NSString *)key;
+
++(void) clearDataWithKey:(NSString *)key;
++(void) removeTaskAtIndex:(NSUInteger)index fromKey:(NSString *)key;
++ (void)removeTaskByUUID:(NSUUID*)uuid fromKey:(NSString *)key;
 @end
+

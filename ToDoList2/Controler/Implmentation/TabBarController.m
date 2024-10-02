@@ -1,21 +1,27 @@
 //
-//  AddTaskViewController.m
+//  TabBarController.m
 //  ToDoList2
 //
-//  Created by Engy on 7/17/2024.
+//  Created by Engy on 7/17/2567 BE.
 //
 
-#import "AddTaskViewController.h"
+#import "TabBarController.h"
+#import "DetailsViewController.h"
+#import "Static.h"
 
-@interface AddTaskViewController ()
+@interface TabBarController ()
 
 @end
 
-@implementation AddTaskViewController
+@implementation TabBarController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+- (IBAction)addButtonPressed:(UIButton*)sender {
+    DetailsViewController *detailsVc = [self.storyboard instantiateViewControllerWithIdentifier:DetailsVCSegue];
+    [self.navigationController pushViewController:detailsVc animated:YES];
 }
 
 /*

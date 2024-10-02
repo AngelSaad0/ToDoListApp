@@ -1,112 +1,117 @@
 //
-//  DetailsViewController.m
+//  TodoViewController.m
 //  ToDoList2
 //
-//  Created by Engy on 7/17/2024.
-#import "TodoViewController.h"
-#import "TaskManager.h"
-#import "DetailsViewController.h"
+//  Created by Engy on 7/17/2567 BE.
 
-@interface TodoViewController () 
+#import "TodoViewController.h"
+#import "DetailsViewController.h"
+#import "Task.h"
+#import "Static.h"
+
+@interface TodoViewController ()
 @property (weak, nonatomic) IBOutlet UISearchBar *uiSearch;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray<Task *> *userArray;
-
+@property (strong, nonatomic) IBOutlet UIImageView *myImg;
+@property (nonatomic, strong) NSMutableArray<Task *> *allTasks;
 @end
 
 @implementation TodoViewController
-- (void)viewDidAppear:(BOOL)animated{
-    [_tableView reloadData];
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupUI];
-    self.userArray = [[[TaskManager sharedManager] tasks] mutableCopy]; // Fetch tasks from TaskManager
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:@"TaskManagerDidUpdate" object:nil];
+    [self updateUI];
 }
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)setupUI {
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+-(void)updateUI{
+    [self.tabBarController.navigationItem.rightBarButtonItems[0] setHidden:NO];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _uiSearch.delegate = self;
     [self.tableView reloadData];
+    self.allTasks = [NSMutableArray arrayWithArray:[Task readDataWithKey:tasksKey]];
+    [self.tabBarController.navigationItem setTitle:@"Todo List"];
 }
-
+-(void)viewWillAppear:(BOOL)animated {
+    [self.tabBarController.navigationItem.rightBarButtonItems[0] setHidden:NO];
+    [self reloadData];
+    [self.tabBarController.navigationItem setTitle:@"Todo List"];
+}
 - (IBAction)addBtnPressed:(id)sender {
-    DetailsViewController *detailsVc = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailsViewController"];
-//
-//
-//    //detailsVc.taskIndex = NSNotFound;
-      [self.navigationController pushViewController:detailsVc animated:YES];
-
+    DetailsViewController *detailsVc = [self.storyboard instantiateViewControllerWithIdentifier:DetailsVCSegue];
+    [self.navigationController pushViewController:detailsVc animated:YES];
 }
 
 - (void)reloadData {
-    self.userArray = [[[TaskManager sharedManager] tasks] mutableCopy]; // Reload tasks from TaskManager
+    _allTasks = [NSMutableArray arrayWithArray:[Task readDataWithKey:tasksKey]];
+    NSMutableArray *filteredTasks = [NSMutableArray new];
+    for (int i=0; i<_allTasks.count; i++) {
+        if (_allTasks[i].status == 0) {
+            [filteredTasks addObject:_allTasks[i]];
+        }
+    }
+    _allTasks = filteredTasks;
+    
     [self.tableView reloadData];
+   
+    if (_allTasks.count == 0){
+        [ self.tableView setHidden:YES];
+        [ self.myImg setHidden:NO];
+    }else{
+        [ self.myImg setHidden:YES];
+        [ self.tableView setHidden:NO];
+    }
 }
 
-
-#pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.userArray.count;
+    return self.allTasks.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell1" forIndexPath:indexPath];
-    Task *task = self.userArray[indexPath.row];
-    cell.textLabel.text = task.name; // Display task name (adjust as per your Task model)
-    cell.imageView.image = [self imageForPriority:task.priority]; // Display image based on task priority
+    UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"cell"];
+        cell = [UITableViewCell new];
+    Task *task = _allTasks[indexPath.row];
+    cell.textLabel.text = task.title;
+    cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%d", task.priority]];
     return cell;
 }
 
-#pragma mark - UITableViewDelegate
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    DetailsViewController *detailsVc = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailsViewController"];
-    detailsVc.task = self.userArray[indexPath.row]; // Pass selected task to DetailsViewController
-    detailsVc.taskIndex = indexPath.row; // Pass index of selected task
+    DetailsViewController *detailsVc = [self.storyboard instantiateViewControllerWithIdentifier:DetailsVCSegue];
+    detailsVc.task = _allTasks[indexPath.row];
     [self.navigationController pushViewController:detailsVc animated:YES];
+ }
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [[TaskManager sharedManager] removeTaskAtIndex:indexPath.row]; // Remove task from TaskManager
-        [self.userArray removeObjectAtIndex:indexPath.row]; // Remove task from userArray
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [Task removeTaskByUUID:_allTasks[indexPath.row].uuid fromKey:tasksKey];
+        [self reloadData];
     }
 }
-
-#pragma mark - UISearchBarDelegate
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (searchText.length == 0) {
-        self.userArray = [[[TaskManager sharedManager] tasks] mutableCopy]; // Reset to all tasks
+        self.allTasks = [NSMutableArray arrayWithArray:[Task readDataWithKey:tasksKey]];
+        [self reloadData];
     } else {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@", searchText]; // Adjust 'name' to match your Task model
-        self.userArray = [[[[TaskManager sharedManager] tasks] filteredArrayUsingPredicate:predicate] mutableCopy]; // Filter tasks
-    }
-    [self.tableView reloadData]; // Reload table view with filtered tasks
-}
-
-#pragma mark - Helper Methods
-
-- (UIImage *)imageForPriority:(Priority)priority {
-    switch (priority) {
-        case PriorityHigh:
-            return [UIImage imageNamed:@"high_priority_image"];
-        case PriorityMedium:
-            return [UIImage imageNamed:@"medium_priority_image"];
-        case PriorityLow:
-            return [UIImage imageNamed:@"low_priority_image"];
-        default:
-            return nil;
+        self.allTasks = [NSMutableArray arrayWithArray:[Task readDataWithKey:tasksKey]];
+        NSMutableArray<Task*> *newSearch = [NSMutableArray new];
+        for (Task *task in _allTasks) {
+            NSRange r = [task.title rangeOfString:searchText options:NSCaseInsensitiveSearch];
+            if (r.location != NSNotFound) {
+                [newSearch addObject:task];
+            }
+        }
+        _allTasks = newSearch;
+        [_tableView reloadData];
     }
 }
 
